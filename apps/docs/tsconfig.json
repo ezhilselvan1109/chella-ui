@@ -15,7 +15,11 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@chellaa/ui": ["../../packages/ui/src/index.ts"],
+      "@chellaa/ui/*": ["../../packages/ui/src/*"]
+    }
   },
   "include": ["src/**/*", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]

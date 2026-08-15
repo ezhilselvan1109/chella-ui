@@ -19,6 +19,7 @@
     "build:playground": "npm run build --workspace=@chellaa/playground",
     "build:consumer": "npm run build --workspace=@chellaa/test-consumer",
     "build:all": "npm run build:ui && npm run build:docs && npm run build:playground && npm run build:storybook && npm run build:consumer",
+    "vercel-build": "npm run build:ui && npm run build:docs",
     "test": "npm run test --workspace=@chellaa/ui",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "eslint .",

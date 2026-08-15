@@ -1114,26 +1114,145 @@ export default function PlanSelector() {
             <div className="space-y-8">
               <div className="space-y-2">
                 <Badge variant="primary">Component</Badge>
-                <h1 className="text-3xl font-extrabold tracking-tight">Select</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight">Select / Combobox</h1>
                 <p className="text-muted-foreground text-sm">
-                  Keyboard-accessible dropdown combobox with search filtering, multi-selection tags, and controlled/uncontrolled state.
+                  Keyboard-accessible dropdown combobox supporting search filtering, multi-selection chips, custom option icons, clearable triggers, and compound syntax.
                 </p>
               </div>
 
-              <div className="p-8 rounded-chella-lg border border-border bg-card max-w-md mx-auto space-y-4">
-                <Select
-                  label="Select Role"
-                  placeholder="Choose an option..."
-                  searchable
-                  clearable
-                  value={selectVal}
-                  onChange={setSelectVal}
-                  options={[
-                    { label: "Admin - Full Access", value: "1" },
-                    { label: "Editor - Content Publishing", value: "2" },
-                    { label: "Viewer - Read Only", value: "3" },
-                  ]}
-                />
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="p-8 rounded-chella-lg border border-border bg-card max-w-md mx-auto space-y-5">
+                  <Select
+                    label="Assigned Cluster Role"
+                    placeholder="Choose an option..."
+                    searchable
+                    clearable
+                    value={selectVal}
+                    onChange={setSelectVal}
+                    options={[
+                      { label: "Cluster Admin - Full Access", value: "1" },
+                      { label: "DevOps Engineer - Deployment Access", value: "2" },
+                      { label: "Security Auditor - Read Only", value: "3" },
+                    ]}
+                  />
+
+                  <div className="pt-4 border-t border-border">
+                    <Select
+                      label="Multi-Select Project Tags"
+                      placeholder="Select multiple tags..."
+                      multiple
+                      clearable
+                      defaultValue={["k8s", "docker"]}
+                      options={[
+                        { label: "Kubernetes", value: "k8s" },
+                        { label: "Docker", value: "docker" },
+                        { label: "TypeScript", value: "ts" },
+                        { label: "Tailwind CSS", value: "tailwind" },
+                      ]}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { useState } from "react";
+import { Select } from "@chella/ui";
+
+// 1. Single Searchable Select
+export function RoleSelector() {
+  const [role, setRole] = useState("admin");
+
+  return (
+    <Select
+      label="Select System Role"
+      searchable
+      clearable
+      value={role}
+      onChange={setRole}
+      options={[
+        { label: "Admin - Full Access", value: "admin" },
+        { label: "Editor - Publishing", value: "editor" },
+        { label: "Viewer - Read Only", value: "viewer" },
+      ]}
+    />
+  );
+}
+
+// 2. Multi-Select Tags
+export function TagSelector() {
+  const [tags, setTags] = useState<string[]>(["k8s"]);
+
+  return (
+    <Select
+      label="Project Tags"
+      multiple
+      clearable
+      value={tags}
+      onChange={(val) => setTags(val as string[])}
+      options={[
+        { label: "Kubernetes", value: "k8s" },
+        { label: "Docker", value: "docker" },
+      ]}
+    />
+  );
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">options</td>
+                        <td className="p-3 font-mono text-muted-foreground">SelectOptionItem[]</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Declarative array of items ({`{ label, value, icon, disabled }`}).</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">value / defaultValue</td>
+                        <td className="p-3 font-mono text-muted-foreground">string | string[]</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Controlled or initial selected value(s).</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">multiple</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Enables multi-selection mode with removable badge chips.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">searchable</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Enables client-side fuzzy search input inside the dropdown.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">clearable</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Renders an accessible clear button when a value is selected.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           )}
@@ -1142,37 +1261,150 @@ export default function PlanSelector() {
             <div className="space-y-8">
               <div className="space-y-2">
                 <Badge variant="primary">Component</Badge>
-                <h1 className="text-3xl font-extrabold tracking-tight">Modal</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight">Modal / Dialog</h1>
                 <p className="text-muted-foreground text-sm">
-                  Accessible dialog portalled to document.body featuring focus trapping, ESC key listener, backdrop blur dismiss, and focus restoration.
+                  Accessible dialog portalled to document.body featuring focus trapping, ESC key listener, backdrop blur dismiss, body scroll locking, and focus restoration.
                 </p>
               </div>
 
-              <div className="p-8 rounded-chella-lg border border-border bg-card flex justify-center">
-                <Button onClick={() => setModalDemoOpen(true)} leftIcon={<UserPlus className="w-4 h-4" />}>
-                  Open Dialog
-                </Button>
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="p-8 rounded-chella-lg border border-border bg-card flex justify-center">
+                  <Button onClick={() => setModalDemoOpen(true)} leftIcon={<UserPlus className="w-4 h-4" />}>
+                    Open Customer Dialog
+                  </Button>
 
-                <Modal
-                  open={modalDemoOpen}
-                  onClose={() => setModalDemoOpen(false)}
-                  title="Confirm Operation"
-                  description="This is an accessible modal dialog adhering to WAI-ARIA standards."
-                  footer={
-                    <>
-                      <Button variant="secondary" onClick={() => setModalDemoOpen(false)}>
-                        Close
-                      </Button>
-                      <Button variant="primary" onClick={() => setModalDemoOpen(false)}>
-                        Confirm
-                      </Button>
-                    </>
-                  }
-                >
-                  <p className="text-sm text-foreground/80 py-2">
-                    Press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-xs">Escape</kbd> or click the backdrop overlay to dismiss this modal.
-                  </p>
-                </Modal>
+                  <Modal
+                    open={modalDemoOpen}
+                    onClose={() => setModalDemoOpen(false)}
+                    title="Confirm Deployment Action"
+                    description="This is an accessible modal dialog adhering strictly to WAI-ARIA standards."
+                    footer={
+                      <>
+                        <Button variant="secondary" onClick={() => setModalDemoOpen(false)}>
+                          Cancel
+                        </Button>
+                        <Button variant="primary" onClick={() => setModalDemoOpen(false)}>
+                          Deploy Service
+                        </Button>
+                      </>
+                    }
+                  >
+                    <p className="text-sm text-foreground/80 py-2">
+                      Focus is trapped inside this modal dialog while open. Press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-xs">Escape</kbd> or click the backdrop overlay to dismiss.
+                    </p>
+                  </Modal>
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { useState } from "react";
+import { Modal, Button } from "@chella/ui";
+
+export function DeleteConfirmation() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Delete Cluster"
+        description="This action cannot be undone."
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={() => setOpen(false)}>
+              Delete Permanently
+            </Button>
+          </>
+        }
+      >
+        <p className="text-sm text-muted-foreground">
+          Are you sure you want to permanently delete this cluster?
+        </p>
+      </Modal>
+    </>
+  );
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y border-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">open</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Controls whether the modal is rendered and visible (required).</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">onClose</td>
+                        <td className="p-3 font-mono text-muted-foreground">() =&gt; void</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Callback fired when modal requests to close via ESC or backdrop (required).</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">title</td>
+                        <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Primary header title linked via aria-labelledby.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">description</td>
+                        <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Header description subtitle linked via aria-describedby.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">footer</td>
+                        <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Action button container rendered in bottom footer bar.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">size</td>
+                        <td className="p-3 font-mono text-muted-foreground">"small" | "medium" | "large" | "full"</td>
+                        <td className="p-3 font-mono">"medium"</td>
+                        <td className="p-3">Maximum width and sizing scale of the dialog window.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">closeOnEsc</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">true</td>
+                        <td className="p-3">Dismisses the modal when pressing the Escape key.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">closeOnBackdropClick</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">true</td>
+                        <td className="p-3">Dismisses the modal when clicking outside on the backdrop overlay.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           )}
@@ -1183,33 +1415,98 @@ export default function PlanSelector() {
                 <Badge variant="primary">Component</Badge>
                 <h1 className="text-3xl font-extrabold tracking-tight">Card</h1>
                 <p className="text-muted-foreground text-sm">
-                  Compound card container with header, title, description, content, and footer subcomponents.
+                  Compound surface container with header, title, description, content, and footer subcomponents, elevation variants, and hover lift physics.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card variant="elevated" hoverable>
-                  <Card.Header>
-                    <Card.Title>Elevated Card</Card.Title>
-                    <Card.Description>With smooth hover lift effect</Card.Description>
-                  </Card.Header>
-                  <Card.Content>
-                    Interactive dashboard container component with token-based styling.
-                  </Card.Content>
-                  <Card.Footer>
-                    <Button size="small">Action</Button>
-                  </Card.Footer>
-                </Card>
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Card variant="elevated" hoverable>
+                    <Card.Header>
+                      <Card.Title>Elevated Surface</Card.Title>
+                      <Card.Description>Smooth -translate-y-1 hover lift</Card.Description>
+                    </Card.Header>
+                    <Card.Content>
+                      Interactive dashboard container component with token-based styling.
+                    </Card.Content>
+                    <Card.Footer>
+                      <Button size="small" variant="primary">Inspect Pods</Button>
+                    </Card.Footer>
+                  </Card>
 
-                <Card variant="outlined">
-                  <Card.Header>
-                    <Card.Title>Outlined Card</Card.Title>
-                    <Card.Description>Subtle border style</Card.Description>
-                  </Card.Header>
-                  <Card.Content>
-                    Clean flat container for structured information.
-                  </Card.Content>
-                </Card>
+                  <Card variant="outlined">
+                    <Card.Header>
+                      <Card.Title>Outlined Surface</Card.Title>
+                      <Card.Description>Border frame with subtle contrast</Card.Description>
+                    </Card.Header>
+                    <Card.Content>
+                      Clean flat container for structured information and tabular data.
+                    </Card.Content>
+                    <Card.Footer>
+                      <Button size="small" variant="secondary">View Traces</Button>
+                    </Card.Footer>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { Card, Button } from "@chella/ui";
+
+export function ServiceCard() {
+  return (
+    <Card variant="elevated" hoverable>
+      <Card.Header>
+        <Card.Title>Auth Microservice</Card.Title>
+        <Card.Description>Port 8080 • us-east-1</Card.Description>
+      </Card.Header>
+      <Card.Content>
+        Healthy status with 99.99% uptime over the last 30 days.
+      </Card.Content>
+      <Card.Footer>
+        <Button size="small">View Metrics</Button>
+      </Card.Footer>
+    </Card>
+  );
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">variant</td>
+                        <td className="p-3 font-mono text-muted-foreground">"elevated" | "outlined" | "flat"</td>
+                        <td className="p-3 font-mono">"elevated"</td>
+                        <td className="p-3">Surface elevation shadow and border style.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">hoverable</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Adds smooth vertical lift translation physics on hover.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           )}
@@ -1218,26 +1515,95 @@ export default function PlanSelector() {
             <div className="space-y-8">
               <div className="space-y-2">
                 <Badge variant="primary">Component</Badge>
-                <h1 className="text-3xl font-extrabold tracking-tight">Badge & Tag</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight">Badge</h1>
                 <p className="text-muted-foreground text-sm">
-                  Status pills, dot indicators, and removable tags with variant color mappings.
+                  Status indicators, live dot beacons, and removable tag pills with semantic color mapping.
                 </p>
               </div>
 
-              <div className="p-6 rounded-chella-lg border border-border bg-card space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="primary">Primary</Badge>
-                  <Badge variant="secondary">Secondary</Badge>
-                  <Badge variant="success">Success</Badge>
-                  <Badge variant="warning">Warning</Badge>
-                  <Badge variant="danger">Danger</Badge>
-                  <Badge variant="outline">Outline</Badge>
-                </div>
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="p-6 rounded-chella-lg border border-border bg-card space-y-4">
+                  <div className="space-y-2">
+                    <div className="text-xs font-semibold text-muted-foreground">1. Semantic Variants:</div>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="primary">Primary</Badge>
+                      <Badge variant="secondary">Secondary</Badge>
+                      <Badge variant="success">Success</Badge>
+                      <Badge variant="warning">Warning</Badge>
+                      <Badge variant="danger">Danger</Badge>
+                      <Badge variant="outline">Outline</Badge>
+                    </div>
+                  </div>
 
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
-                  <Badge dot variant="success">Online</Badge>
-                  <Badge dot variant="danger">Offline</Badge>
-                  <Badge removable onRemove={() => alert("Removed Tag")} variant="primary">React</Badge>
+                  <div className="space-y-2 pt-3 border-t border-border">
+                    <div className="text-xs font-semibold text-muted-foreground">2. Dot Beacons & Removable Tags:</div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Badge dot variant="success">Operational</Badge>
+                      <Badge dot variant="danger">Offline</Badge>
+                      <Badge removable onRemove={() => alert("Removed React Tag")} variant="primary">React 18</Badge>
+                      <Badge removable onRemove={() => alert("Removed Tailwind Tag")} variant="secondary">Tailwind CSS</Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { Badge } from "@chella/ui";
+
+export function SystemStatus() {
+  return (
+    <div className="flex items-center gap-2">
+      <Badge dot variant="success">Online</Badge>
+      <Badge removable onRemove={() => handleRemove()} variant="outline">
+        Production
+      </Badge>
+    </div>
+  );
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">variant</td>
+                        <td className="p-3 font-mono text-muted-foreground">"primary" | "secondary" | "success" | "warning" | "danger" | "outline"</td>
+                        <td className="p-3 font-mono">"primary"</td>
+                        <td className="p-3">Color theme token for the badge background and text.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">dot</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Renders a small circular status beacon before the label.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">removable</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Renders an accessible dismiss button with "x" icon.</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -1249,21 +1615,118 @@ export default function PlanSelector() {
                 <Badge variant="primary">Component</Badge>
                 <h1 className="text-3xl font-extrabold tracking-tight">Table</h1>
                 <p className="text-muted-foreground text-sm">
-                  Declarative data table supporting column sorting, custom cell rendering, row selection checkboxes, and loading states.
+                  Declarative data table supporting column sorting, custom cell rendering, row selection checkboxes, striped rows, and loading states.
                 </p>
               </div>
 
-              <Table
-                columns={[
-                  { key: "name", title: "Name", dataIndex: "name", sorter: true },
-                  { key: "role", title: "Role", dataIndex: "role" },
-                  { key: "status", title: "Status", dataIndex: "status", render: (s) => <Badge dot variant="success">{String(s)}</Badge> },
-                ]}
-                dataSource={[
-                  { id: "1", name: "Kumar Selvan", role: "Architect", status: "Active" },
-                  { id: "2", name: "Ravi Chandran", role: "Lead Engineer", status: "Active" },
-                ]}
-              />
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="rounded-chella-lg border border-border bg-card p-4">
+                  <Table
+                    bordered
+                    columns={[
+                      { key: "name", title: "Microservice", dataIndex: "name", sorter: true },
+                      { key: "role", title: "Cluster Role", dataIndex: "role" },
+                      {
+                        key: "status",
+                        title: "Health",
+                        dataIndex: "status",
+                        render: (s) => (
+                          <Badge dot variant={s === "Healthy" ? "success" : "warning"}>
+                            {String(s)}
+                          </Badge>
+                        ),
+                      },
+                      { key: "latency", title: "p99 Latency", dataIndex: "latency", align: "right" },
+                    ]}
+                    dataSource={[
+                      { id: "1", name: "auth-service", role: "Security Gateway", status: "Healthy", latency: "14ms" },
+                      { id: "2", name: "billing-engine", role: "Payment Processing", status: "Healthy", latency: "28ms" },
+                      { id: "3", name: "telemetry-stream", role: "Event Bus", status: "Degraded", latency: "142ms" },
+                    ]}
+                  />
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { Table, Badge } from "@chella/ui";
+
+const columns = [
+  { key: "name", title: "Service", dataIndex: "name", sorter: true },
+  { key: "role", title: "Role", dataIndex: "role" },
+  {
+    key: "status",
+    title: "Status",
+    dataIndex: "status",
+    render: (val) => <Badge dot variant="success">{String(val)}</Badge>,
+  },
+];
+
+const dataSource = [
+  { id: "1", name: "auth-service", role: "Gateway", status: "Active" },
+  { id: "2", name: "billing-api", role: "Fintech", status: "Active" },
+];
+
+export function ServiceTable() {
+  return <Table columns={columns} dataSource={dataSource} bordered striped />;
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">columns</td>
+                        <td className="p-3 font-mono text-muted-foreground">TableColumn&lt;T&gt;[]</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Array of column definitions with sorters, alignments, and custom renders.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">dataSource</td>
+                        <td className="p-3 font-mono text-muted-foreground">T[]</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Array of record data items to display.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">rowSelection</td>
+                        <td className="p-3 font-mono text-muted-foreground">TableRowSelection&lt;T&gt;</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Checkbox row selection controller ({`{ selectedRowKeys, onChange }`}).</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">bordered</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Renders vertical cell borders and frame outline.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">striped</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Alternates background rows for enhanced legibility.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           )}
 

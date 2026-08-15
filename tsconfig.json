@@ -1,9 +1,25 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./packages/ui" },
-    { "path": "./apps/docs" },
-    { "path": "./apps/playground" },
-    { "path": "./apps/test-consumer" }
-  ]
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*", ".storybook/**/*", "vite.config.ts", "vitest.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

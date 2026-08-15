@@ -1,4 +1,4 @@
-# Chella UI — Comprehensive Architecture Audit & Production Hardening Report
+# Chellaa UI — Comprehensive Architecture Audit & Production Hardening Report
 
 **Evaluation Date**: 2026-08-15  
 **Auditor**: Senior Frontend Architect & Design Systems Engineer  
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Chella UI is an enterprise-grade React Component Library and Design System built with **Tailwind CSS**, **TypeScript**, **Vitest**, **Storybook**, and **Vite Library Mode**. The library provides a suite of accessible, themeable UI components packaged with precompiled design tokens for consumption in any React application with **zero consumer Tailwind configuration**.
+Chellaa UI is an enterprise-grade React Component Library and Design System built with **Tailwind CSS**, **TypeScript**, **Vitest**, **Storybook**, and **Vite Library Mode**. The library provides a suite of accessible, themeable UI components packaged with precompiled design tokens for consumption in any React application with **zero consumer Tailwind configuration**.
 
 This audit rigorously inspects the workspace architecture, token engine, dark mode persistence, tree-shaking capability, accessibility compliance, component APIs, testing suite, and developer experience.
 
@@ -18,7 +18,7 @@ This audit rigorously inspects the workspace architecture, token engine, dark mo
 
 | Domain | Status | Rating | Key Finding |
 | :--- | :--- | :--- | :--- |
-| **Monorepo Architecture** | Hardened | `GOOD` | NPM Workspaces isolate `@chella/ui` from Docs, Playground, and Consumer. |
+| **Monorepo Architecture** | Hardened | `GOOD` | NPM Workspaces isolate `@chellaa/ui` from Docs, Playground, and Consumer. |
 | **TypeScript & Strictness** | Hardened | `GOOD` | `strict: true` across all packages; 0 `any` types; `.d.ts` declaration maps generated. |
 | **Design Tokens & Theme** | Hardened | `GOOD` | HSL CSS variables enable dynamic runtime theming and alpha modifier support. |
 | **Tailwind Distribution** | Hardened | `GOOD` | Shipped with precompiled `dist/styles.css`. Zero consumer purge scanning required. |
@@ -44,13 +44,13 @@ This audit rigorously inspects the workspace architecture, token engine, dark mo
   - *Why needed*: Accessible functional icons (spinners, clear buttons, chevrons, search icons).
   - *Impact*: Fully tree-shakable ES modules. Retained.
 - **`react` & `react-dom`** (`GOOD`):
-  - Properly declared as `peerDependencies` (`>=18.0.0`) and externalized in `vite.config.ts`. Verified NOT bundled into `@chella/ui/dist`.
+  - Properly declared as `peerDependencies` (`>=18.0.0`) and externalized in `vite.config.ts`. Verified NOT bundled into `@chellaa/ui/dist`.
 
 ---
 
 ### 2.2 Design Token & Theming System
 - **HSL Semantic Variables**:
-  - Defined in `packages/ui/src/styles/index.css` without `hsl()` wrapper (e.g. `--chella-primary: 221.2 83.2% 53.3%`).
+  - Defined in `packages/ui/src/styles/index.css` without `hsl()` wrapper (e.g. `--chellaa-primary: 221.2 83.2% 53.3%`).
   - Allows dynamic opacity modifiers: `bg-primary/90`, `bg-primary/10`, `ring-ring/20`.
 - **Semantic Mappings**:
   - `primary`, `secondary`, `success`, `warning`, `danger`, `muted`, `card`, `popover`, `border`, `input`, `ring`.
@@ -70,10 +70,10 @@ This audit rigorously inspects the workspace architecture, token engine, dark mo
         ↓
   packages/ui/dist/styles.css (~26KB)
         ↓
-  import "@chella/ui/styles.css"
+  import "@chellaa/ui/styles.css"
   ```
 - **Consumer Isolation**:
-  - Verified in `apps/test-consumer`: consumer applications import `@chella/ui` and `@chella/ui/styles.css` without needing Tailwind installed or configured.
+  - Verified in `apps/test-consumer`: consumer applications import `@chellaa/ui` and `@chellaa/ui/styles.css` without needing Tailwind installed or configured.
   - Component classes (`variants`, `sizes`, `hover:`, `focus:`, `disabled:`, `dark:`, `data-state:`) are precompiled and available immediately.
 
 ---
@@ -131,5 +131,5 @@ This audit rigorously inspects the workspace architecture, token engine, dark mo
 - **TypeScript Compilation**: `npm run typecheck` passed (0 errors).
 - **ESLint Linting**: `npm run lint` passed (0 errors, 0 warnings).
 - **Vitest Unit Tests**: `npm run test` passed (41/41 tests across 7 test suites).
-- **Production Workspace Builds**: `npm run build:all` passed for `@chella/ui`, `@chella/docs`, `@chella/playground`, and `@chella/test-consumer`.
+- **Production Workspace Builds**: `npm run build:all` passed for `@chellaa/ui`, `@chellaa/docs`, `@chellaa/playground`, and `@chellaa/test-consumer`.
 - **Consumer Zero-Purge Verification**: Verified in `apps/test-consumer`.

@@ -1,91 +1,132 @@
-# Chella UI Monorepo
+# Chellaa UI — NPM Workspaces Monorepo
 
 Enterprise-grade React Component Library and Design System with Tailwind CSS, TypeScript, Vitest, Storybook, and Vite.
 
 ---
 
-## Monorepo Structure
+## 1. Monorepo Structure
 
 ```text
-chella-ui/
+chellaa-ui/
 │
 ├── apps/
-│   ├── docs/             # Interactive documentation portal with live component demos & props tables
-│   ├── playground/       # Design System Workbench with live token customizer (palette, radius, dark mode)
+│   ├── docs/             # Documentation Portal with live previews & API tables (@chellaa/docs)
+│   ├── playground/       # Design System Workbench with live token engine (@chellaa/playground)
+│   ├── storybook/        # Standalone Storybook 8 application (@chellaa/storybook)
 │   └── test-consumer/    # Standalone validation app verifying zero-purge npm packaging
 │
 ├── packages/
-│   └── ui/               # Core @chella/ui library package (Vite library mode, DTS, Tailwind styles.css)
-│       │
+│   └── ui/               # Core @chellaa/ui library package
 │       ├── src/
-│       │   ├── components/  # Button, Input, Select, Modal, Card, Badge, Table
+│       │   ├── components/  # 35 UI component suites (6-file anatomy)
 │       │   ├── theme/       # ThemeProvider, useTheme, HSL design tokens
 │       │   ├── hooks/       # useControlled, useFocusTrap, useOutsideClick, useId
 │       │   ├── utils/       # cn (clsx + tailwind-merge)
 │       │   └── index.ts     # Public package entry point
-│       │
-│       ├── .storybook/      # Storybook 8 with Tailwind & theme switcher
-│       ├── vitest.config.ts # Vitest + React Testing Library config
-│       └── vite.config.ts   # Vite library bundler
+│       └── dist/            # Compiled artifacts (ESM, CJS, DTS, styles.css)
 │
-├── package.json          # Root npm workspaces
-├── tsconfig.json         # Project references
-├── eslint.config.js      # Strict ESLint config
-└── .prettierrc           # Code formatter config
+├── .github/
+│   └── workflows/ci.yml  # Automated CI verification workflow
+│
+├── package.json          # Root npm workspaces ["apps/*", "packages/*"]
+├── tsconfig.json         # Root project references
+├── eslint.config.js      # Strict ESLint configuration
+└── ARCHITECTURE.md       # Full monorepo architectural documentation
 ```
 
 ---
 
-## Quick Scripts
+## 2. Quick Scripts
 
-### Development & Apps
+### 2.1 Development & Applications
 ```bash
-# Launch interactive Design System Playground
-npm run dev
-# or
-npm run dev:playground
-
-# Launch Documentation Application
+# Launch Documentation Portal (port 5174)
 npm run dev:docs
 
-# Launch Storybook Workbench
+# Launch Interactive Design System Playground (port 5173)
+npm run dev:playground
+
+# Launch Storybook Workbench (port 6006)
 npm run storybook
 
-# Launch Test Consumer Validation App
+# Launch Test Consumer App (port 5175)
 npm run dev:consumer
 ```
 
-### Building & Testing
+### 2.2 Building & Testing
 ```bash
-# Run complete Vitest suite (41 tests across all components)
-npm run test
+# Build core @chellaa/ui library (dist/index.js, dist/index.cjs, dist/styles.css)
+npm run build:ui
 
-# Build all packages and applications
+# Build all packages and applications in deterministic dependency order
 npm run build:all
 
-# Type-check TypeScript
+# Run complete Vitest suite (480 unit tests across 72 test suites)
+npm run test
+
+# Type-check TypeScript across all workspaces
 npm run typecheck
+
+# Lint across all workspaces with ESLint
+npm run lint
 ```
 
 ---
 
-## Architectural Highlights
+## 3. Consuming `@chellaa/ui`
 
-1. **Tailwind CSS & Semantic Tokens**: All styling uses semantic utility tokens (`bg-primary`, `text-primary-foreground`, `border-border`, etc.) mapped to HSL CSS variables.
-2. **Theme Engine**: `ThemeProvider` and `useTheme()` manage Light, Dark, System themes, and dynamic custom token injection.
-3. **Compound Components & Controlled State**: Supports both controlled and uncontrolled patterns seamlessly through `useControlled`.
-4. **Accessible Foundations**: Full WAI-ARIA adherence (keyboard arrows, Escape listeners, focus trap and restoration for Modals).
-5. **NPM Distribution**: Packaged via Vite library mode into ESM (`dist/index.js`), CJS (`dist/index.cjs`), `.d.ts` declaration maps, and precompiled `dist/styles.css`.
+Install the package in your application:
+```bash
+npm install @chellaa/ui
+```
+
+Import components and precompiled zero-purge stylesheet:
+```tsx
+import React from "react";
+import { Button, Card, Badge, ThemeProvider } from "@chellaa/ui";
+import "@chellaa/ui/styles.css";
+
+export function App() {
+  return (
+    <ThemeProvider defaultTheme="system">
+      <Card variant="elevated" hoverable>
+        <Card.Header>
+          <Card.Title>Production Microservice</Card.Title>
+          <Card.Description>Status monitor</Card.Description>
+        </Card.Header>
+        <Card.Content>
+          <Badge dot variant="success">Operational</Badge>
+        </Card.Content>
+        <Card.Footer>
+          <Button variant="primary">Deploy Service</Button>
+        </Card.Footer>
+      </Card>
+    </ThemeProvider>
+  );
+}
+```
 
 ---
 
-## Architecture & Engineering Standards
+## 4. Vercel Deployment Architecture
 
-- **[Architecture Audit & Production Hardening Report](file:///d:/learning/Microservice/chella-ui/ARCHITECTURE_AUDIT.md)**: In-depth technical evaluation of tokens, packaging, tree-shaking, and performance.
-- **[Component Engineering Standards](file:///d:/learning/Microservice/chella-ui/COMPONENT_STANDARDS.md)**: Mandatory architectural patterns, file conventions, and accessibility rules for all components.
+Each application in `apps/` can be independently deployed to Vercel:
+
+| Vercel Project | Root Directory | Build Command | Output Directory |
+| :--- | :--- | :--- | :--- |
+| **`chellaa-ui-docs`** | `apps/docs` | `npm run build` | `dist` |
+| **`chellaa-ui-playground`** | `apps/playground` | `npm run build` | `dist` |
+| **`chellaa-ui-storybook`** | `apps/storybook` | `npm run build:storybook` | `storybook-static` |
 
 ---
 
-## License
+## 5. Architectural Standards
 
-MIT © [Chella UI Team](https://github.com/chella-ui)
+- **[Monorepo Architecture Documentation](file:///d:/learning/Microservice/chellaa-ui/ARCHITECTURE.md)**: Deep dive into package boundaries, dependency flow, theme tokens, and scaling.
+- **[Component Engineering Standards](file:///d:/learning/Microservice/chellaa-ui/COMPONENT_STANDARDS.md)**: 6-file component anatomy, accessibility, and testing guidelines.
+
+---
+
+## 6. License
+
+MIT © [Chellaa UI Team](https://github.com/chellaa-ui)

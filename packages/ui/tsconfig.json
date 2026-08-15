@@ -15,13 +15,11 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": [],
-  "references": [
-    { "path": "./packages/ui" },
-    { "path": "./apps/docs" },
-    { "path": "./apps/playground" },
-    { "path": "./apps/test-consumer" }
-  ]
+  "include": ["src/**/*", "vite.config.ts", "vitest.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

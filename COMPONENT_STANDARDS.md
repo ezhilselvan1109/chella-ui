@@ -1,6 +1,6 @@
-# Chella UI — Component Engineering Standards & Guidelines
+# Chellaa UI — Component Engineering Standards & Guidelines
 
-This document defines the mandatory architectural and engineering standards for all existing and future components in the **Chella UI** Design System.
+This document defines the mandatory architectural and engineering standards for all existing and future components in the **Chellaa UI** Design System.
 
 ---
 
@@ -61,9 +61,9 @@ export const componentVariants = cva(
         danger: "bg-danger text-danger-foreground hover:bg-danger/90",
       },
       size: {
-        small: "h-8 px-3 text-xs rounded-chella-sm",
-        medium: "h-10 px-4 text-sm rounded-chella-md",
-        large: "h-12 px-6 text-base rounded-chella-lg",
+        small: "h-8 px-3 text-xs rounded-chellaa-sm",
+        medium: "h-10 px-4 text-sm rounded-chellaa-md",
+        large: "h-12 px-6 text-base rounded-chellaa-lg",
       },
     },
     defaultVariants: {
@@ -132,7 +132,7 @@ export * from "./ComponentName.variants";
 2. **Opacity Modifiers**:
    - Use Tailwind slash syntax: `bg-primary/90`, `bg-primary/10`, `border-border/80`.
 3. **Radius Tokens**:
-   - `rounded-chella-sm`, `rounded-chella-md`, `rounded-chella-lg`, `rounded-chella-full`.
+   - `rounded-chellaa-sm`, `rounded-chellaa-md`, `rounded-chellaa-lg`, `rounded-chellaa-full`.
 
 ---
 

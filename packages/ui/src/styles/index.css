@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Design Tokens - HSL format */
+    --chellaa-primary: 221.2 83.2% 53.3%;
+    --chellaa-primary-foreground: 210 40% 98%;
+
+    --chellaa-secondary: 210 40% 96.1%;
+    --chellaa-secondary-foreground: 222.2 47.4% 11.2%;
+
+    --chellaa-success: 142.1 76.2% 36.3%;
+    --chellaa-success-foreground: 355.7 100% 97.3%;
+
+    --chellaa-warning: 38 92% 50%;
+    --chellaa-warning-foreground: 48 96% 89%;
+
+    --chellaa-danger: 0 84.2% 60.2%;
+    --chellaa-danger-foreground: 210 40% 98%;
+
+    --chellaa-background: 0 0% 100%;
+    --chellaa-foreground: 222.2 84% 4.9%;
+
+    --chellaa-card: 0 0% 100%;
+    --chellaa-card-foreground: 222.2 84% 4.9%;
+
+    --chellaa-popover: 0 0% 100%;
+    --chellaa-popover-foreground: 222.2 84% 4.9%;
+
+    --chellaa-muted: 210 40% 96.1%;
+    --chellaa-muted-foreground: 215.4 16.3% 46.9%;
+
+    --chellaa-border: 214.3 31.8% 91.4%;
+    --chellaa-input: 214.3 31.8% 91.4%;
+    --chellaa-ring: 221.2 83.2% 53.3%;
+
+    --chellaa-radius: 0.5rem;
+  }
+
+  .dark, [data-theme="dark"] {
+    --chellaa-primary: 217.2 91.2% 59.8%;
+    --chellaa-primary-foreground: 222.2 47.4% 11.2%;
+
+    --chellaa-secondary: 217.2 32.6% 17.5%;
+    --chellaa-secondary-foreground: 210 40% 98%;
+
+    --chellaa-success: 142.1 70.6% 45.3%;
+    --chellaa-success-foreground: 144.9 80.4% 10%;
+
+    --chellaa-warning: 38 92% 50%;
+    --chellaa-warning-foreground: 48 96% 10%;
+
+    --chellaa-danger: 0 72.2% 50.6%;
+    --chellaa-danger-foreground: 210 40% 98%;
+
+    --chellaa-background: 222.2 84% 4.9%;
+    --chellaa-foreground: 210 40% 98%;
+
+    --chellaa-card: 222.2 84% 6.9%;
+    --chellaa-card-foreground: 210 40% 98%;
+
+    --chellaa-popover: 222.2 84% 6.9%;
+    --chellaa-popover-foreground: 210 40% 98%;
+
+    --chellaa-muted: 217.2 32.6% 17.5%;
+    --chellaa-muted-foreground: 215 20.2% 65.1%;
+
+    --chellaa-border: 217.2 32.6% 17.5%;
+    --chellaa-input: 217.2 32.6% 17.5%;
+    --chellaa-ring: 224.3 76.3% 48%;
+  }
+
+  * {
+    border-color: hsl(var(--chellaa-border));
+  }
+
+  body {
+    background-color: hsl(var(--chellaa-background));
+    color: hsl(var(--chellaa-foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}

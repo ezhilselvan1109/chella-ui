@@ -19,3 +19,4 @@ export * from "./components/Card";
 export * from "./components/Badge";
 export * from "./components/Table";
 export * from "./components/Checkbox";
+export * from "./components/Switch";

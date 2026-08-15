@@ -8,6 +8,7 @@ import {
   Badge,
   Table,
   Checkbox,
+  Switch,
   useTheme,
 } from "@chella/ui";
 import {
@@ -26,6 +27,7 @@ type DocSection =
   | "button"
   | "input"
   | "checkbox"
+  | "switch"
   | "select"
   | "modal"
   | "card"
@@ -64,6 +66,7 @@ export default function App() {
     { id: "button", title: "Button", category: "Components" },
     { id: "input", title: "Input", category: "Components" },
     { id: "checkbox", title: "Checkbox", category: "Components" },
+    { id: "switch", title: "Switch", category: "Components" },
     { id: "select", title: "Select", category: "Components" },
     { id: "modal", title: "Modal", category: "Components" },
     { id: "card", title: "Card", category: "Components" },
@@ -573,6 +576,131 @@ export default function SignupForm() {
                         <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
                         <td className="p-3 font-mono">-</td>
                         <td className="p-3">Validation error message linked via aria-describedby.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeSection === "switch" && (
+            <div className="space-y-8">
+              <div className="space-y-2">
+                <Badge variant="primary">Component</Badge>
+                <h1 className="text-3xl font-extrabold tracking-tight">Switch</h1>
+                <p className="text-muted-foreground text-sm">
+                  Accessible binary toggle switch (`role="switch"`) designed for immediate settings and configuration preferences.
+                </p>
+              </div>
+
+              {/* Semantic comparison note */}
+              <div className="p-4 rounded-chella-md bg-primary/10 border border-primary/20 text-xs leading-relaxed space-y-1">
+                <span className="font-bold text-primary block">Checkbox vs Switch Semantics:</span>
+                <p className="text-foreground/90">
+                  Use <strong>Checkbox</strong> for multi-option selections and form fields submitted with a submit button. Use <strong>Switch</strong> for standalone, immediate settings (e.g. Dark mode, Push notifications, Two-Factor Authentication).
+                </p>
+              </div>
+
+              {/* Interactive Demo */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Interactive Preview</div>
+                <div className="p-8 rounded-chella-lg border border-border bg-card max-w-md mx-auto space-y-5">
+                  <Switch
+                    label="Enable Real-Time Telemetry"
+                    description="Streams microservice logs directly to your observability dashboard."
+                    defaultChecked
+                  />
+                  <Switch
+                    label="Compact Navigation Mode"
+                    size="small"
+                  />
+                  <Switch
+                    label="Global Maintenance Lock"
+                    error="Cannot enable maintenance lock during active peak deployment window."
+                    size="medium"
+                  />
+                </div>
+              </div>
+
+              {/* Code Snippet */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">Usage Example</div>
+                <div className="relative rounded-chella-lg bg-muted/60 border border-border p-4 font-mono text-xs text-foreground">
+                  <pre className="overflow-x-auto">
+{`import { Switch } from "@chella/ui";
+
+export default function SettingsPanel() {
+  const [notifications, setNotifications] = useState(true);
+
+  return (
+    <Switch
+      label="Enable Push Notifications"
+      description="Receive build completion alerts on desktop."
+      checked={notifications}
+      onCheckedChange={setNotifications}
+    />
+  );
+}`}
+                  </pre>
+                </div>
+              </div>
+
+              {/* Props Table */}
+              <div className="space-y-3">
+                <div className="text-sm font-bold">API Reference</div>
+                <div className="rounded-chella-lg border border-border overflow-hidden">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="p-3 font-semibold">Prop</th>
+                        <th className="p-3 font-semibold">Type</th>
+                        <th className="p-3 font-semibold">Default</th>
+                        <th className="p-3 font-semibold">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr>
+                        <td className="p-3 font-mono text-primary">checked</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Controlled checked/on state.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">defaultChecked</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Initial state for uncontrolled usage.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">onCheckedChange</td>
+                        <td className="p-3 font-mono text-muted-foreground">(checked: boolean) =&gt; void</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Callback fired when the switch state changes.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">size</td>
+                        <td className="p-3 font-mono text-muted-foreground">"small" | "medium" | "large"</td>
+                        <td className="p-3 font-mono">"medium"</td>
+                        <td className="p-3">Size token for the switch track and sliding thumb.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">disabled</td>
+                        <td className="p-3 font-mono text-muted-foreground">boolean</td>
+                        <td className="p-3 font-mono">false</td>
+                        <td className="p-3">Disables switch interaction and applies opacity token.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">description</td>
+                        <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Descriptive subtitle linked via aria-describedby.</td>
+                      </tr>
+                      <tr>
+                        <td className="p-3 font-mono text-primary">error</td>
+                        <td className="p-3 font-mono text-muted-foreground">ReactNode</td>
+                        <td className="p-3 font-mono">-</td>
+                        <td className="p-3">Validation error message linked via aria-describedby and aria-invalid.</td>
                       </tr>
                     </tbody>
                   </table>

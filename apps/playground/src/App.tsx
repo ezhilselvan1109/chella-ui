@@ -8,6 +8,7 @@ import {
   Badge,
   Table,
   Checkbox,
+  Switch,
   useTheme,
   type TableColumn,
 } from "@chella/ui";
@@ -604,6 +605,30 @@ export default function App() {
                   <Checkbox
                     label="All Microservices Operational"
                     indeterminate
+                    size="medium"
+                  />
+                </div>
+              </div>
+
+              {/* Switch Preferences */}
+              <div className="space-y-3 pt-4 border-t border-border/70">
+                <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Switch Settings & Preferences
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <Switch
+                    label="Dark Mode Sync"
+                    description="Automatically synchronize UI theme with operating system preference."
+                    defaultChecked
+                  />
+                  <Switch
+                    label="Real-time Telemetry Stream"
+                    size="small"
+                  />
+                  <Switch
+                    label="Maintenance Mode Lock"
+                    error="Cannot enable maintenance mode while customer traffic is active."
                     size="medium"
                   />
                 </div>

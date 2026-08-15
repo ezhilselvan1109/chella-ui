@@ -8,6 +8,7 @@ import {
   Badge,
   Table,
   Checkbox,
+  Switch,
   useTheme,
   type TableColumn,
 } from "@chella/ui";
@@ -111,6 +112,13 @@ export default function App() {
                 label="Dedicated Solution Architect Support"
                 size="small"
               />
+              <div style={{ marginTop: "0.5rem", paddingTop: "0.5rem", borderTop: "1px solid rgba(128,128,128,0.2)" }}>
+                <Switch
+                  label="Instant Slack & PagerDuty Incident Routing"
+                  description="Dispatches high-priority incident webhooks to configured channels."
+                  defaultChecked
+                />
+              </div>
             </div>
           </Card.Content>
           <Card.Footer>

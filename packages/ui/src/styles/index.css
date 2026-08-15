@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Design Tokens - HSL format */
+    --chella-primary: 221.2 83.2% 53.3%;
+    --chella-primary-foreground: 210 40% 98%;
+
+    --chella-secondary: 210 40% 96.1%;
+    --chella-secondary-foreground: 222.2 47.4% 11.2%;
+
+    --chella-success: 142.1 76.2% 36.3%;
+    --chella-success-foreground: 355.7 100% 97.3%;
+
+    --chella-warning: 38 92% 50%;
+    --chella-warning-foreground: 48 96% 89%;
+
+    --chella-danger: 0 84.2% 60.2%;
+    --chella-danger-foreground: 210 40% 98%;
+
+    --chella-background: 0 0% 100%;
+    --chella-foreground: 222.2 84% 4.9%;
+
+    --chella-card: 0 0% 100%;
+    --chella-card-foreground: 222.2 84% 4.9%;
+
+    --chella-popover: 0 0% 100%;
+    --chella-popover-foreground: 222.2 84% 4.9%;
+
+    --chella-muted: 210 40% 96.1%;
+    --chella-muted-foreground: 215.4 16.3% 46.9%;
+
+    --chella-border: 214.3 31.8% 91.4%;
+    --chella-input: 214.3 31.8% 91.4%;
+    --chella-ring: 221.2 83.2% 53.3%;
+
+    --chella-radius: 0.5rem;
+  }
+
+  .dark, [data-theme="dark"] {
+    --chella-primary: 217.2 91.2% 59.8%;
+    --chella-primary-foreground: 222.2 47.4% 11.2%;
+
+    --chella-secondary: 217.2 32.6% 17.5%;
+    --chella-secondary-foreground: 210 40% 98%;
+
+    --chella-success: 142.1 70.6% 45.3%;
+    --chella-success-foreground: 144.9 80.4% 10%;
+
+    --chella-warning: 38 92% 50%;
+    --chella-warning-foreground: 48 96% 10%;
+
+    --chella-danger: 0 72.2% 50.6%;
+    --chella-danger-foreground: 210 40% 98%;
+
+    --chella-background: 222.2 84% 4.9%;
+    --chella-foreground: 210 40% 98%;
+
+    --chella-card: 222.2 84% 6.9%;
+    --chella-card-foreground: 210 40% 98%;
+
+    --chella-popover: 222.2 84% 6.9%;
+    --chella-popover-foreground: 210 40% 98%;
+
+    --chella-muted: 217.2 32.6% 17.5%;
+    --chella-muted-foreground: 215 20.2% 65.1%;
+
+    --chella-border: 217.2 32.6% 17.5%;
+    --chella-input: 217.2 32.6% 17.5%;
+    --chella-ring: 224.3 76.3% 48%;
+  }
+
+  * {
+    border-color: hsl(var(--chella-border));
+  }
+
+  body {
+    background-color: hsl(var(--chella-background));
+    color: hsl(var(--chella-foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}

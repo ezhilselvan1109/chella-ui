@@ -1,0 +1,9 @@
+@import "@chella/ui/styles.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: hsl(var(--chella-background));
+  color: hsl(var(--chella-foreground));
+}

@@ -1,0 +1,56 @@
+{
+  "name": "chella-ui-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chella UI - Production-Grade React Component Library with Tailwind CSS",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev:playground",
+    "build": "npm run build --workspace=@chella/ui",
+    "build:all": "npm run build --workspaces --if-present",
+    "dev:docs": "npm run dev --workspace=@chella/docs",
+    "dev:playground": "npm run dev --workspace=@chella/playground",
+    "dev:consumer": "npm run dev --workspace=@chella/test-consumer",
+    "storybook": "npm run storybook --workspace=@chella/ui",
+    "build-storybook": "npm run build-storybook --workspace=@chella/ui",
+    "test": "npm run test --workspace=@chella/ui",
+    "test:watch": "npm run test:watch --workspace=@chella/ui",
+    "test:coverage": "npm run test:coverage --workspace=@chella/ui",
+    "typecheck": "npm run typecheck --workspace=@chella/ui",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+  },
+  "keywords": [
+    "react",
+    "component-library",
+    "tailwind",
+    "design-system",
+    "typescript",
+    "accessible",
+    "ui"
+  ],
+  "author": "Chella UI Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/helper-string-parser": "^7.29.7",
+    "@babel/runtime": "^8.0.0",
+    "@babel/types": "^7.29.8",
+    "@eslint/js": "^9.20.0",
+    "@types/node": "^22.13.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "caniuse-lite": "^1.0.30001809",
+    "eslint": "^9.20.1",
+    "globals": "^15.15.0",
+    "happy-dom": "^20.11.2",
+    "jsdom": "^27.0.1",
+    "prettier": "^3.5.1",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
+  }
+}

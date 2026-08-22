@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "@chellaa/ui";
 import "./preview.css";
 
@@ -21,10 +21,24 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.backgrounds?.value === "#0a0d0e" ? "dark" : "light";
+      const bgValue = context.globals.backgrounds?.value;
+      const isDark = bgValue === "#0a0d0e" || bgValue === "dark" || context.globals.theme === "dark";
+      const activeTheme = isDark ? "dark" : "light";
+
+      useEffect(() => {
+        const root = document.documentElement;
+        if (isDark) {
+          root.classList.add("dark");
+          root.setAttribute("data-theme", "dark");
+        } else {
+          root.classList.remove("dark");
+          root.setAttribute("data-theme", "light");
+        }
+      }, [isDark]);
+
       return (
-        <ThemeProvider key={theme} defaultTheme={theme} storageKey="storybook-theme">
-          <div className={`p-6 min-h-screen ${theme === "dark" ? "dark bg-background text-foreground" : "bg-background text-foreground"}`}>
+        <ThemeProvider key={activeTheme} defaultTheme={activeTheme} storageKey={`sb-theme-${activeTheme}`}>
+          <div className={`p-6 min-h-screen bg-background text-foreground transition-colors duration-150 ${isDark ? "dark" : ""}`}>
             <Story />
           </div>
         </ThemeProvider>

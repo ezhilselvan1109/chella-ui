@@ -115,21 +115,22 @@ export const DocSidebar: React.FC<DocSidebarProps> = ({
       {isMobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden flex">
           <div
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm transition-opacity animate-in fade-in-0 duration-200"
             onClick={onCloseMobile}
           />
-          <div className="relative w-4/5 max-w-xs bg-card border-r border-border h-full shadow-2xl z-10 flex flex-col">
-            <div className="p-3 border-b border-border flex items-center justify-between">
+          <div className="relative w-4/5 max-w-xs bg-card border-r border-border h-full shadow-2xl z-10 flex flex-col animate-in slide-in-from-left duration-200">
+            <div className="p-3.5 border-b border-border flex items-center justify-between">
               <span className="font-extrabold text-sm text-foreground">Navigation</span>
               <button
                 type="button"
                 onClick={onCloseMobile}
-                className="p-1 rounded-chellaa-md text-muted-foreground hover:text-foreground hover:bg-muted"
+                className="p-1.5 rounded-chellaa-md text-muted-foreground hover:text-foreground hover:bg-muted"
+                aria-label="Close Navigation"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto">{navContent}</div>
+            <div className="flex-1 overflow-y-auto pt-2">{navContent}</div>
           </div>
         </div>
       )}

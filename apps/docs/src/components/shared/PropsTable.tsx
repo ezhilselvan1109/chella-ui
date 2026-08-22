@@ -15,7 +15,7 @@ export const PropsTable: React.FC<PropsTableProps> = ({ data, title = "Props & A
       <h3 className="text-base font-bold text-foreground">{title}</h3>
       <div className="rounded-chellaa-lg border border-border overflow-hidden bg-card shadow-xs">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
+          <table className="w-full min-w-[520px] text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-border bg-muted/40 text-muted-foreground font-semibold">
                 <th className="py-2.5 px-4 font-semibold">Prop</th>

@@ -68,7 +68,8 @@ export const ThemingDoc: React.FC = () => {
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-foreground">Dark Mode Design Tokens</h2>
         <div className="rounded-chellaa-lg border border-border overflow-hidden bg-card text-xs">
-          <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[500px] text-left border-collapse">
             <thead>
               <tr className="border-b border-border bg-muted/40 text-muted-foreground font-semibold">
                 <th className="py-2.5 px-4">CSS Variable</th>
@@ -112,6 +113,7 @@ export const ThemingDoc: React.FC = () => {
           </table>
         </div>
       </div>
+    </div>
 
       <Divider />
 

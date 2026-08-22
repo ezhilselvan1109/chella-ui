@@ -32,28 +32,28 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
           onCloseMobile={() => setMobileMenuOpen(false)}
         />
 
-        <main className="flex-1 min-w-0 px-4 sm:px-8 py-8 lg:py-10 max-w-4xl">
+        <main className="flex-1 min-w-0 px-3 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 max-w-4xl">
           {/* Breadcrumb Indicator */}
           {currentItem && (
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6 font-medium">
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6 font-medium overflow-x-auto whitespace-nowrap pb-1">
               <span>Docs</span>
-              <ChevronRight className="w-3 h-3 text-muted-foreground/60" />
+              <ChevronRight className="w-3 h-3 text-muted-foreground/60 shrink-0" />
               <span>{currentItem.category}</span>
-              <ChevronRight className="w-3 h-3 text-muted-foreground/60" />
+              <ChevronRight className="w-3 h-3 text-muted-foreground/60 shrink-0" />
               <span className="text-foreground font-semibold">{currentItem.title}</span>
             </div>
           )}
 
           {/* Dynamic Page Content */}
-          <div className="pb-16">{children(activeSection)}</div>
+          <div className="pb-12 sm:pb-16">{children(activeSection)}</div>
 
           {/* Bottom Pagination Links */}
-          <div className="border-t border-border pt-8 flex items-center justify-between gap-4 text-xs font-medium">
+          <div className="border-t border-border pt-6 sm:pt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs font-medium">
             {prevItem ? (
               <button
                 type="button"
                 onClick={() => navigateTo(prevItem.id)}
-                className="flex flex-col items-start gap-1 p-3 rounded-chellaa-lg border border-border hover:bg-muted/60 transition-colors text-left group"
+                className="flex flex-col items-start gap-1 p-3 rounded-chellaa-lg border border-border hover:bg-muted/60 transition-colors text-left group w-full sm:w-auto min-h-[52px]"
               >
                 <span className="text-[11px] text-muted-foreground">Previous</span>
                 <span className="font-bold text-foreground group-hover:text-primary transition-colors">
@@ -61,14 +61,14 @@ export const DocLayout: React.FC<DocLayoutProps> = ({ children }) => {
                 </span>
               </button>
             ) : (
-              <div />
+              <div className="hidden sm:block" />
             )}
 
             {nextItem && (
               <button
                 type="button"
                 onClick={() => navigateTo(nextItem.id)}
-                className="flex flex-col items-end gap-1 p-3 rounded-chellaa-lg border border-border hover:bg-muted/60 transition-colors text-right group ml-auto"
+                className="flex flex-col items-start sm:items-end gap-1 p-3 rounded-chellaa-lg border border-border hover:bg-muted/60 transition-colors text-left sm:text-right group w-full sm:w-auto sm:ml-auto min-h-[52px]"
               >
                 <span className="text-[11px] text-muted-foreground">Next</span>
                 <span className="font-bold text-foreground group-hover:text-primary transition-colors">

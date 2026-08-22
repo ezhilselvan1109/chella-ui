@@ -1,0 +1,8 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useState } from "react";
+import { Code2, ChevronDown, ChevronUp } from "lucide-react";
+import { CodeSnippet } from "./CodeSnippet";
+export const ComponentPreview = ({ title, description, code, children, defaultShowCode = false, }) => {
+    const [showCode, setShowCode] = useState(defaultShowCode);
+    return (_jsxs("div", { className: "space-y-2.5", children: [_jsxs("div", { className: "flex items-center justify-between", children: [_jsxs("div", { children: [_jsx("h3", { className: "text-sm sm:text-base font-bold text-foreground", children: title }), description && (_jsx("p", { className: "text-xs text-muted-foreground mt-0.5", children: description }))] }), code && (_jsxs("button", { type: "button", onClick: () => setShowCode(!showCode), className: "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-chellaa-md border border-border bg-card text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/40 transition-colors focus:outline-none focus:ring-1 focus:ring-primary", "aria-expanded": showCode, children: [_jsx(Code2, { className: "w-3.5 h-3.5" }), _jsx("span", { children: showCode ? "Hide Code" : "View Code" }), showCode ? (_jsx(ChevronUp, { className: "w-3.5 h-3.5" })) : (_jsx(ChevronDown, { className: "w-3.5 h-3.5" }))] }))] }), _jsxs("div", { className: "rounded-chellaa-lg border border-border bg-card overflow-hidden shadow-xs", children: [_jsx("div", { className: "p-4 sm:p-6 flex flex-wrap items-center justify-center gap-4 bg-background/50 min-h-[120px]", children: children }), showCode && code && (_jsx("div", { className: "border-t border-border", children: _jsx(CodeSnippet, { code: code, className: "border-none rounded-none" }) }))] })] }));
+};

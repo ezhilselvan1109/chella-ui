@@ -15,13 +15,13 @@ const preview: Preview = {
       default: "light",
       values: [
         { name: "light", value: "#ffffff" },
-        { name: "dark", value: "#090d16" },
+        { name: "dark", value: "#0a0d0e" },
       ],
     },
   },
   decorators: [
     (Story, context) => {
-      const theme = context.globals.backgrounds?.value === "#090d16" ? "dark" : "light";
+      const theme = context.globals.backgrounds?.value === "#0a0d0e" ? "dark" : "light";
       return (
         <ThemeProvider key={theme} defaultTheme={theme} storageKey="storybook-theme">
           <div className={`p-6 min-h-screen ${theme === "dark" ? "dark bg-background text-foreground" : "bg-background text-foreground"}`}>

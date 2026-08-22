@@ -40,36 +40,36 @@
   }
 
   .dark, [data-theme="dark"] {
-    --chellaa-primary: 217.2 91.2% 59.8%;
-    --chellaa-primary-foreground: 222.2 47.4% 11.2%;
+    --chellaa-primary: 166 85% 44%;
+    --chellaa-primary-foreground: 166 65% 6%;
 
-    --chellaa-secondary: 217.2 32.6% 17.5%;
-    --chellaa-secondary-foreground: 210 40% 98%;
+    --chellaa-secondary: 195 13% 14%;
+    --chellaa-secondary-foreground: 195 20% 95%;
 
-    --chellaa-success: 142.1 70.6% 45.3%;
-    --chellaa-success-foreground: 144.9 80.4% 10%;
+    --chellaa-success: 158 75% 42%;
+    --chellaa-success-foreground: 158 80% 98%;
 
     --chellaa-warning: 38 92% 50%;
-    --chellaa-warning-foreground: 48 96% 10%;
+    --chellaa-warning-foreground: 38 96% 10%;
 
-    --chellaa-danger: 0 72.2% 50.6%;
+    --chellaa-danger: 350 89% 60%;
     --chellaa-danger-foreground: 210 40% 98%;
 
-    --chellaa-background: 222.2 84% 4.9%;
-    --chellaa-foreground: 210 40% 98%;
+    --chellaa-background: 195 17% 4.7%;
+    --chellaa-foreground: 195 20% 98%;
 
-    --chellaa-card: 222.2 84% 6.9%;
-    --chellaa-card-foreground: 210 40% 98%;
+    --chellaa-card: 195 15% 7.5%;
+    --chellaa-card-foreground: 195 20% 98%;
 
-    --chellaa-popover: 222.2 84% 6.9%;
-    --chellaa-popover-foreground: 210 40% 98%;
+    --chellaa-popover: 195 14% 9.5%;
+    --chellaa-popover-foreground: 195 20% 98%;
 
-    --chellaa-muted: 217.2 32.6% 17.5%;
-    --chellaa-muted-foreground: 215 20.2% 65.1%;
+    --chellaa-muted: 195 13% 11.5%;
+    --chellaa-muted-foreground: 195 12% 64%;
 
-    --chellaa-border: 217.2 32.6% 17.5%;
-    --chellaa-input: 217.2 32.6% 17.5%;
-    --chellaa-ring: 224.3 76.3% 48%;
+    --chellaa-border: 195 14% 16%;
+    --chellaa-input: 195 14% 18%;
+    --chellaa-ring: 166 85% 44%;
   }
 
   * {

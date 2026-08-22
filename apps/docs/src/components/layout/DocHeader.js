@@ -1,0 +1,15 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Badge, useTheme } from "@chellaa/ui";
+import { Menu, Sun, Moon, Laptop, Github, ExternalLink } from "lucide-react";
+export const DocHeader = ({ onOpenMobileMenu }) => {
+    const { theme, setTheme, resolvedTheme } = useTheme();
+    const cycleTheme = () => {
+        if (theme === "light")
+            setTheme("dark");
+        else if (theme === "dark")
+            setTheme("system");
+        else
+            setTheme("light");
+    };
+    return (_jsxs("header", { className: "sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md px-4 sm:px-6 py-3 flex items-center justify-between shadow-xs", children: [_jsxs("div", { className: "flex items-center gap-3", children: [_jsx("button", { type: "button", onClick: onOpenMobileMenu, className: "md:hidden p-2 -ml-1.5 rounded-chellaa-md text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20", "aria-label": "Open Navigation Menu", children: _jsx(Menu, { className: "w-5 h-5" }) }), _jsxs("a", { href: "#getting-started", className: "flex items-center gap-2.5 group", children: [_jsx("div", { className: "w-8 h-8 rounded-chellaa-md bg-primary text-primary-foreground flex items-center justify-center font-black text-sm shadow-xs group-hover:scale-105 transition-transform", children: "C" }), _jsxs("div", { className: "flex items-center gap-2", children: [_jsx("span", { className: "font-extrabold tracking-tight text-sm sm:text-base text-foreground", children: "Chellaa UI" }), _jsx(Badge, { variant: "primary", size: "small", className: "font-semibold text-[10px] px-1.5 py-0.5", children: "v0.1.0" })] })] })] }), _jsxs("div", { className: "flex items-center gap-2 sm:gap-3", children: [_jsx("button", { type: "button", onClick: cycleTheme, className: "p-2 rounded-chellaa-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20", title: `Current Theme: ${theme} (Click to cycle)`, "aria-label": "Toggle Theme Mode", children: theme === "system" ? (_jsx(Laptop, { className: "w-4 h-4" })) : resolvedTheme === "dark" ? (_jsx(Moon, { className: "w-4 h-4 text-emerald-400" })) : (_jsx(Sun, { className: "w-4 h-4 text-amber-500" })) }), _jsxs("a", { href: "http://localhost:6006", target: "_blank", rel: "noreferrer", className: "hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-chellaa-md border border-border bg-card text-xs font-medium text-foreground hover:bg-muted transition-colors shadow-xs", children: [_jsx("span", { children: "Storybook" }), _jsx(ExternalLink, { className: "w-3.5 h-3.5 text-muted-foreground" })] }), _jsx("a", { href: "https://github.com", target: "_blank", rel: "noreferrer", className: "p-2 rounded-chellaa-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary/20", "aria-label": "GitHub Repository", children: _jsx(Github, { className: "w-4 h-4" }) })] })] }));
+};

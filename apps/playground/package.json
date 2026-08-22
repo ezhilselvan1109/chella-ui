@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:playground": "tsc && vite build",
+    "build:docs": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
